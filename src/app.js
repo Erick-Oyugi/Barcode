@@ -27,10 +27,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(routes)
 app.set('view engine', 'hbs')
-
-
-
-
+app.use("/.netlify/functions/app", routes);
+serverless(app);
 
 
 
