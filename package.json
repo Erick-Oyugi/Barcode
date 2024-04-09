@@ -1,0 +1,34 @@
+{
+  "name": "barcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "build": "netlify deploy --prod"
+  },
+  "author": "Erick Oyugi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "canvas": "^2.11.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "helmet": "^7.1.0",
+    "joi": "^17.12.3",
+    "jsbarcode": "^3.11.6",
+    "mongoose": "^8.2.1",
+    "netlify-cli": "^17.22.0",
+    "netlify-lambda": "^2.0.16",
+    "node-datetime": "^2.1.2",
+    "nodemon": "^3.1.0",
+    "qrcode": "^1.5.3",
+    "serverless-http": "^3.2.0",
+    "uuid": "^9.0.1"
+  }
+}
