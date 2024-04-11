@@ -23,16 +23,13 @@ function bootstrap(){
 };
 
 
-app.use("/.netlify/functions/app");
-serverless(app);
-
 
 var server = https.createServer(httpsOptions, app).listen(port, ()=>{
    console.log(`QRcode Backend running on  port ${port}`)
 })
 
 
-// connectDB()
+connectDB()
 
 }
 
