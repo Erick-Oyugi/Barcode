@@ -29,7 +29,7 @@ var server = https.createServer(httpsOptions, app).listen(port, ()=>{
 })
 
 
-connectDB()
+// connectDB()
 
 }
 
