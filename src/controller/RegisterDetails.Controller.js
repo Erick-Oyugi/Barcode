@@ -83,7 +83,7 @@ qrCodeGenerator.toString( `${value}`, {
   }, function(err, data) {
     if (err) throw err;
 
-    res.send(data)
+    res.json({"Qrcode":data})
     console.log(data);
 
   });
