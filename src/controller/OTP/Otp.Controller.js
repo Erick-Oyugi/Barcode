@@ -7,6 +7,8 @@ import GetOTPSchemaData from '../../model/GetOTP/GetOTP.model.js'
 const getOTPUser = async( req, res) => {
 
 
+const { PhoneNumber } = req.body
+
 const value = new GetOTPSchemaData({
   
      PhoneNumber : PhoneNumber,
@@ -58,8 +60,6 @@ const code = speakeasy.totp({
      console.log(err)
   }
 
-
 }
-
 
 export default getOTPUser
