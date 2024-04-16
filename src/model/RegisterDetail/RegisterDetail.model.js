@@ -22,11 +22,6 @@ const RegisterDetailsSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-
-     Floor: {
-        type: Number,
-        required: true,
-      },
       date: {
         type: String,
         default: Date.now(),

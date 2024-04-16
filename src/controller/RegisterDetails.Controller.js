@@ -4,6 +4,8 @@ import RegisterDetailsSchemaData from '../model/RegisterDetail/RegisterDetail.mo
 import crypto from 'crypto'
 import { v4 as uuidv4 } from 'uuid';
 import DateTime from 'node-datetime';
+import axios from 'axios'
+import speakeasy from 'speakeasy'
 
 
 const RegisterDetails = async (req, res) => {
@@ -25,7 +27,6 @@ const value = new RegisterDetailsSchemaData({
         SecondName: SecondName,
         PhoneNumber : PhoneNumber,
         IdNumber : IdNumber,
-        Floor : Floor,
         Date: formatted
       
 })
@@ -49,6 +50,7 @@ if(SecondName == null){
   res.status(400).json({
     "Validation Error": "SecondName is required"
   })
+  console.log("SecondName is Required")
 
 }
 
@@ -59,16 +61,16 @@ if(PhoneNumber == null){
 
 }
 
-if(Floor == null){
-  res.status(400).json({
-    "Validation Error": "Floor is required"
-  })
+// if(Floor == null){
+//   res.status(400).json({
+//     "Validation Error": "Floor is required"
+//   })
 
-}
+// }
 
 if(Date == null){
   res.status(400).json({
-    "Validation Error": "SecondName is required"
+    "Validation Error": "Date is required"
   })
 
 }
@@ -76,6 +78,18 @@ if(Date == null){
 else {
 
 try {
+ 
+const secret = speakeasy.generateSecret({ length: 20 });
+
+const code = speakeasy.totp({ 
+  
+  // Use the Base32 encoding of the secret key 
+  secret: secret.base32, 
+
+  // Tell Speakeasy to use the Base32  
+  // encoding format for the secret key 
+  encoding: 'base32'
+}); 
 
 qrCodeGenerator.toString( `${value}`, {
     errorCorrectionLevel: 'H',
@@ -87,6 +101,30 @@ qrCodeGenerator.toString( `${value}`, {
     console.log(data);
 
   });
+
+
+//send sms infobip
+await axios({
+  method : "POST",
+  url : process.env.INFO_BIP_URL,
+  headers: {
+      'Authorization': process.env.AUTHORIZATION_HEADER,
+      'Accept': 'application/json'
+  },
+  data: {
+   "messages": [
+              {
+                 "destinations": [{"to":`${PhoneNumber}`}],
+                 "from": "SecureGo",
+                 "text": `Hello,\n\nYour OTP is ${code} !`
+              }
+          ]
+      
+  }
+}).then((response) => {
+  console.log(response.data);
+  // res.send(response.data)
+});
 
 }catch(err){
 
