@@ -42,7 +42,7 @@ const code = speakeasy.totp({
          "messages": [
                     {
                        "destinations": [{"to":`${PhoneNumber}`}],
-                       "from": "SecureGo",
+                       "from": "SMS",
                        "text": `Hello,\n\nYour OTP is ${code} !`
                     }
                 ]
