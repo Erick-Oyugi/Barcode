@@ -12,6 +12,7 @@
   "author": "Erick Oyugi",
   "license": "ISC",
   "dependencies": {
+    "africastalking": "^0.6.7",
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",

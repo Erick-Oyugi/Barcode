@@ -15,11 +15,22 @@ let Id = uuidv4();
 var dt = DateTime.create();
 var formatted = dt.format('Y-m-d H:M:S');
 console.log(formatted);
+const secret = speakeasy.generateSecret({ length: 20 });
+
+const code = speakeasy.totp({
+  
+  // Use the Base32 encoding of the secret key 
+  secret: secret.base32,
+
+  // Tell Speakeasy to use the Base32  
+  // encoding format for the secret key 
+  encoding: 'base32'
+}); 
 
 
 console.log(Id)
 
-const { FirstName, SecondName, PhoneNumber, IdNumber, Floor, Date} = req.body
+const { FirstName, SecondName, PhoneNumber, IdNumber, Floor, registerDate} = req.body
 
 const value = new RegisterDetailsSchemaData({
         Id: Id,
@@ -27,7 +38,7 @@ const value = new RegisterDetailsSchemaData({
         SecondName: SecondName,
         PhoneNumber : PhoneNumber,
         IdNumber : IdNumber,
-        Date: formatted
+        Date: registerDate
       
 })
 
@@ -105,7 +116,7 @@ await axios({
               {
                  "destinations": [{"to":`${PhoneNumber}`}],
                  "from": "SecureGo",
-                 "text": `Hello,\n\nYour OTP is ${code} !`
+                 "text": `Hello,\n\nYour OTP Code is ${code} !`
               }
           ]
       
