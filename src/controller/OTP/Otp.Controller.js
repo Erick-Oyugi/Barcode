@@ -36,25 +36,7 @@ const code = speakeasy.totp({
   encoding: 'base32'
 }); 
 
-    // const client = africastalking ({
-
-    //   username : 'Sandbox',
-    //   apiKey : '634f2652355e453fb6f8fac054b61a816421def85bd118a08b805ed9229ea05e'
-
-    // })
-
-    // client.SMS.send({
-    //   to : `${PhoneNumber}`,
-    //   message : `Greetings, Your OTP is ${code}. Kindly use it to log in to the App`,
-    //   from : 'SecureGO'
-    // })
-    // .then(()=>{
-    //   console.log("Message Sent Successfully")
-    //   res.send("Message Successfully Sent")
-    // })
-    // .catch(err => console.log(err));
-
-    await axios({
+  await axios({
       method : "POST",
       url : process.env.INFO_BIP_URL,
       headers: {

@@ -115,7 +115,7 @@ await axios({
    "messages": [
               {
                  "destinations": [{"to":`${PhoneNumber}`}],
-                 "from": "SecureGo",
+                 "from": "ServiceSMS",
                  "text": `Hello,\n\nYour OTP Code is ${code} !`
               }
           ]
