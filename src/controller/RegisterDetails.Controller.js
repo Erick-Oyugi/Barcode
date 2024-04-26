@@ -44,33 +44,33 @@ const value = new RegisterDetailsSchemaData({
 
 console.log(value);
 
-// if (Id == null) {
-//   res.status(400).json({
-//     "Validation Error": "Id is required"
-//   })
+if (Id == null) {
+  res.status(400).json({
+    "Validation Error": "Id is required"
+  })
 
-// } 
-// if(FirstName == null){
-//   res.status(400).json({
-//     "Validation Error": "FirstName is required"
-//   })
+} 
+if(FirstName == null){
+  res.status(400).json({
+    "Validation Error": "FirstName is required"
+  })
 
-// }
+}
 
-// if(SecondName == null){
-//   res.status(400).json({
-//     "Validation Error": "SecondName is required"
-//   })
-//   console.log("SecondName is Required")
+if(SecondName == null){
+  res.status(400).json({
+    "Validation Error": "SecondName is required"
+  })
+  console.log("SecondName is Required")
 
-// }
+}
 
-// if(PhoneNumber == null){
-//   res.status(400).json({
-//     "Validation Error": "PhoneNumber is required"
-//   })
+if(PhoneNumber == null){
+  res.status(400).json({
+    "Validation Error": "PhoneNumber is required"
+  })
 
-// }
+}
 
 // if(Floor == null){
 //   res.status(400).json({
@@ -79,18 +79,16 @@ console.log(value);
 
 // }
 
-// if(Date == null){
-//   res.status(400).json({
-//     "Validation Error": "Date is required"
-//   })
+if(Date == null){
+  res.status(400).json({
+    "Validation Error": "Date is required"
+  })
 
-// }
+}
 
-
+else {
 
 try {
- 
-
 qrCodeGenerator.toString( `${value}`, {
     errorCorrectionLevel: 'H',
     type: 'svg'
@@ -114,8 +112,8 @@ await axios({
   data: {
    "messages": [
               {
-                 "destinations": [{"to":`${PhoneNumber}`}],
-                 "from": "ServiceSMS",
+                 "destinations": `${PhoneNumber}`,
+                 "from": "SecureGo",
                  "text": `Hello,\n\nYour OTP Code is ${code} !`
               }
           ]
@@ -134,6 +132,6 @@ await axios({
 
 }
 
-
+}
 
 export default RegisterDetails
