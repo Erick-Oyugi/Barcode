@@ -1,6 +1,6 @@
 
 import qrCodeGenerator from 'qrcode'
-import RegisterDetailsSchemaData from '../model/RegisterDetail/RegisterDetail.model.js'
+import RegisterDetailsSchemaData from '../../model/RegisterDetail/RegisterDetail.model.js'
 import crypto from 'crypto'
 import { v4 as uuidv4 } from 'uuid';
 import DateTime from 'node-datetime';
@@ -8,7 +8,7 @@ import axios from 'axios'
 import speakeasy from 'speakeasy'
 
 
-const RegisterDetails = async (req, res) => {
+const AddProfile = async (req, res) => {
 
 let Id = uuidv4();
 
@@ -38,6 +38,7 @@ const value = new RegisterDetailsSchemaData({
         SecondName: SecondName,
         PhoneNumber : PhoneNumber,
         IdNumber : IdNumber,
+        Floor : Floor,
         Date: registerDate
       
 })
@@ -101,7 +102,6 @@ qrCodeGenerator.toString( `${value}`, {
   });
 
 
-
 }catch(err){
 
   //  res.status(400).json(err)
@@ -112,4 +112,4 @@ qrCodeGenerator.toString( `${value}`, {
 
 }
 
-export default RegisterDetails
+export default AddProfile

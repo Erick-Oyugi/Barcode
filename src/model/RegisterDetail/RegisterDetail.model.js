@@ -1,3 +1,4 @@
+
 import mongoose from 'mongoose'
 
 const RegisterDetailsSchema = new mongoose.Schema({
@@ -22,6 +23,22 @@ const RegisterDetailsSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
+     
+      Floor : {
+        type: String,
+        required: false,
+      },
+
+      SerialNumber :{
+        type: String,
+        required: false
+
+      },
+      CarPlateNumber : {
+        type: String,
+        required: false
+      },
+
       date: {
         type: String,
         default: Date.now(),
